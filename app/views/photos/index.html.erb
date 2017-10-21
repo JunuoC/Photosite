@@ -1,0 +1,39 @@
+<h1>PhotoSite Photo List</h1>
+
+<p>Showing photos of <%= @user.first_name%>
+                      <%= @user.last_name%></p>
+
+<style>
+  table, th, tr, td {
+    border: 1px solid black;
+  }
+</style>
+
+<table>
+  <col width="400">
+  <col width="200">
+  <col width="400">
+  <tr>
+    <th>Photo</th>
+    <th>Creation Time</th>
+    <th>Comment</th>
+  </tr>
+  <% @photos.each do |photo|%>
+    <tr>
+      <td><%= image_tag(photo.file_name)%></td>
+      <td>Create at <br/><%= photo.date_time%></td>
+      <td>
+        <%@comment = photo.comments%>
+        <% @comment.each do |comment|%>
+              <p><b>Post On:</b> <%= comment.date_time%><br/></p>
+              <p><b>Post By:</b> <%= link_to comment.user.first_name, photo_link_path(comment.user.id)%>
+                                 <%= link_to comment.user.last_name, photo_link_path(comment.user.id)%>
+              </p>
+              <p><%= comment.comment_text%></p>
+        <% end %>
+
+      </td>
+    </tr>
+  <% end %>
+
+</table>

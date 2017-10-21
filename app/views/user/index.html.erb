@@ -1,0 +1,20 @@
+<h1>PhotoSite User List</h1>
+
+There are 6 users
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>FirstName</th>
+    <th>LastName</th>
+  </tr>
+  <% User.all.each do |user| %>
+      <tr>
+        <td><%= link_to user.id, photo_link_path(user.id) %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+
+      </tr>
+  <% end %>
+
+</table>
